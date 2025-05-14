@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="427.0" prefWidth="642.0" style="-fx-background-color: #D2D0A0;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.animalfarm.AddTaskController">
+   <children>
+      <Text layoutX="50.0" layoutY="39.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold; -fx-font-family: Helvetica; -fx-font-size: 20px;" text="Add Task" />
+      <VBox layoutX="14.0" layoutY="57.0" prefHeight="294.0" prefWidth="575.0" spacing="10.0">
+         <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" text="Task" />
+            <TextField fx:id="taskField" prefHeight="26.0" prefWidth="452.0" promptText="what do the animals need today" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" text="DueDate" />
+            <DatePicker fx:id="dueField" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" text="Priority" />
+            <ComboBox fx:id="priorityComboBox" prefWidth="150.0" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" text="Status " />
+            <ComboBox fx:id="statusComboBox" prefWidth="150.0" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" text="Assignee" />
+            <ComboBox fx:id="AssigneeComboBox" prefWidth="150.0" />
+         </children>
+         <padding>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </padding>
+      </VBox>
+      <HBox layoutX="490.0" layoutY="387.0" prefHeight="26.0" prefWidth="126.0" spacing="15.0">
+         <children>
+            <Button  mnemonicParsing="false" text="Close" onAction="#handleClose" />
+            <Button fx:id="createButton" mnemonicParsing="false" text="Create" onAction="#handleCreateTask" />
+         </children>
+      </HBox>
+   </children>
+</AnchorPane>
