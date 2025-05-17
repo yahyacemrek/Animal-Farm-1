@@ -31,21 +31,21 @@ public class AnimalDetailsController {
 
 
     public void setAnimal(Animal animal) {
-        nameLabel.setText("Name: " + animal.getName());
-        genderLabel.setText("Gender: " + animal.getGender());
-        ageLabel.setText("Age: " + animal.getAge());
-        weightLabel.setText("Weight: " + animal.getLastWeight() + " kg");
-        statusLabel.setText("Status: " + animal.getStatus());
-        breedLabel.setText("Breed: " + animal.getBreed());
-        TypeLabel.setText("Type:" + animal.getBreed());
-        TagLabel.setText("Tag:" + animal.getTag());
-        LocationLabel.setText("Location" + animal.getLocation());
-        colorLabel.setText("Color" + animal.getColor());
-        HeightLabel.setText("Height" + animal.getHeight());
-        BirthdayLabel.setText("Birthday" + animal.getBirthdate());
-        MaternityLabel.setText("Maternity" + animal.getMaternity());
-        PaternityLabel.setText("Paternity" + animal.getPaternity());
-        OffspringLabel.setText("Offspring" + animal.getOffspring());
+        nameLabel.setText(animal.getName());
+        genderLabel.setText( animal.getGender());
+        ageLabel.setText(animal.getAge());
+        weightLabel.setText(animal.getLastWeight() + " kg");
+        statusLabel.setText( animal.getStatus());
+        breedLabel.setText(animal.getBreed());
+        TypeLabel.setText(animal.getBreed());
+        TagLabel.setText(animal.getTag());
+        LocationLabel.setText(animal.getLocation());
+        colorLabel.setText( animal.getColor());
+        HeightLabel.setText("" + animal.getHeight());
+        BirthdayLabel.setText(animal.getBirthdate());
+        MaternityLabel.setText( animal.getMaternity());
+        PaternityLabel.setText( animal.getPaternity());
+        OffspringLabel.setText(animal.getOffspring());
 
     }
     @FXML

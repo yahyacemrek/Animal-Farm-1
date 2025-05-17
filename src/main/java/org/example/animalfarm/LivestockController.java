@@ -91,4 +91,24 @@ public class LivestockController {
        animalList.add(new Animal("A03", "Daisy", "Female", "1 year, 9 months", 390.2, "Sick", "Cow", "COW789", "Barn C", "White", "1.2m", 1.8, "2023-01-15", "12-12-2002", "Bubu","0","calf3"));
 
     }
+    @FXML
+    private void openAddAnimalPopup() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("AddAnimal.fxml"));
+            Parent root = loader.load();
+
+            AddAnimalController controller = loader.getController();
+            controller.setAnimalList(animalList); // Inject the shared list
+
+            Stage stage = new Stage();
+            stage.setTitle("Add New Animal");
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+
 }
