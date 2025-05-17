@@ -32,7 +32,11 @@
                   <PropertyValueFactory property="done" />
                </cellValueFactory>
             </TableColumn>
-            <TableColumn fx:id="AnimalColumn" prefWidth="164.45608520507812" text="Animal" />
+            <TableColumn fx:id="AnimalColumn" prefWidth="164.45608520507812" text="Animal" >
+            <cellValueFactory>
+               <PropertyValueFactory property="name" />
+            </cellValueFactory>
+            </TableColumn>
             <TableColumn fx:id="GenderColumn" prefWidth="133.71279907226562" text="Gender" />
             <TableColumn fx:id="AgeColumn" prefWidth="138.69927978515625" text="Age" />
             <TableColumn fx:id="LastWeightColumn" prefWidth="135.30072021484375" text="Last Weight" />
