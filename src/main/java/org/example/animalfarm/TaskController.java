@@ -138,6 +138,7 @@ public class TaskController {
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();
+            System.err.println("Error loading Livestock.fxml: " + e.getMessage());
         }
     }
 
