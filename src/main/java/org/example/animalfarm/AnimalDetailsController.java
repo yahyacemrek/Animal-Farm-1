@@ -42,7 +42,7 @@ public class AnimalDetailsController {
         LocationLabel.setText(animal.getLocation());
         colorLabel.setText( animal.getColor());
         HeightLabel.setText("" + animal.getHeight());
-        BirthdayLabel.setText(animal.getBirthdate());
+        BirthdayLabel.setText(animal.getBirthday());
         MaternityLabel.setText( animal.getMaternity());
         PaternityLabel.setText( animal.getPaternity());
         OffspringLabel.setText(animal.getOffspring());

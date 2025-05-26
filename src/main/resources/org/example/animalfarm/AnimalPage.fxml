@@ -8,6 +8,9 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.TextField?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" style="-fx-background-color: #9EBC8A;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.animalfarm.LivestockController">
    <children>
@@ -37,23 +40,31 @@
             </VBox>
          </children>
       </AnchorPane>
-      <TableView fx:id="AnimalTableView" layoutX="277.0" layoutY="155.0" prefHeight="631.0" prefWidth="905.0">
-         <columns>
-            <TableColumn fx:id="checkboxColumn" prefWidth="50.0" text=" ">
-               <cellValueFactory>
-                  <PropertyValueFactory property="done" />
-               </cellValueFactory>
-            </TableColumn>
-            <TableColumn fx:id="AnimalColumn" prefWidth="164.45608520507812" text="Animal">
-            <cellValueFactory>
-               <PropertyValueFactory property="name" />
-            </cellValueFactory>
-            </TableColumn>
-            <TableColumn fx:id="GenderColumn" prefWidth="133.71279907226562" text="Gender" />
-            <TableColumn fx:id="AgeColumn" prefWidth="138.69927978515625" text="Age" />
-            <TableColumn fx:id="LastWeightColumn" prefWidth="135.30072021484375" text="Last Weight" />
-            <TableColumn fx:id="TypeColumn" prefWidth="166.2127685546875" text="Breed" />
-         </columns>
-      </TableView>
+      <VBox spacing="10" AnchorPane.leftAnchor="10" AnchorPane.rightAnchor="10" AnchorPane.topAnchor="10">
+         <!-- Search Section -->
+         <HBox spacing="10" alignment="CENTER_LEFT">
+            <ComboBox fx:id="searchCriteria" prefWidth="120"/>
+            <TextField fx:id="searchField" promptText="Search animals..." prefWidth="300"/>
+         </HBox>
+         
+         <!-- Table Section -->
+         <TableView fx:id="AnimalTableView" prefHeight="600.0" VBox.vgrow="ALWAYS">
+            <columns>
+               <TableColumn fx:id="AnimalColumn" prefWidth="150.0" text="Name" />
+               <TableColumn fx:id="IdColumn" prefWidth="150.0" text="ID" />
+               <TableColumn fx:id="GenderColumn" prefWidth="100.0" text="Gender" />
+               <TableColumn fx:id="AgeColumn" prefWidth="150.0" text="Age" />
+               <TableColumn fx:id="LastWeightColumn" prefWidth="120.0" text="Last Weight" />
+               <TableColumn fx:id="TypeColumn" prefWidth="150.0" text="Type" />
+               <TableColumn fx:id="BreedColumn" prefWidth="150.0" text="Breed" />
+               <TableColumn fx:id="StatusColumn" prefWidth="150.0" text="Status"/>
+            </columns>
+         </TableView>
+         
+         <!-- Buttons Section -->
+         <HBox spacing="10" alignment="CENTER_RIGHT">
+            <Button onAction="#openAddAnimalPopup" text="Add Animal" />
+         </HBox>
+      </VBox>
    </children>
 </AnchorPane>

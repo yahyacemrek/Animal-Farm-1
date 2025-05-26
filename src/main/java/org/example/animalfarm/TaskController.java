@@ -1,5 +1,6 @@
 package org.example.animalfarm;
 
+import javafx.animation.FadeTransition;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -131,6 +132,7 @@ public class TaskController {
 
             // Get current stage
             Stage stage = (Stage) taskTableView.getScene().getWindow();
+           // FadeTransition fadeIn = new FadeTransition(Duration.millis(500), livestockRoot);
             stage.setScene(new Scene(livestockRoot));
             stage.setTitle("Livestock");
             stage.show();

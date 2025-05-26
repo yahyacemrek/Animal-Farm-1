@@ -1,19 +1,25 @@
 package org.example.animalfarm;
 
-import java.awt.*;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Tab;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.collections.ObservableList;
 import javafx.stage.Stage;
+import javafx.scene.input.KeyEvent;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -32,32 +38,49 @@ public class LivestockController {
     public TableColumn<Animal,String> LastWeightColumn;
     @FXML
     public TableColumn<Animal,String> TypeColumn;
+    @FXML
+    public TableColumn<Animal,String> IdColumn;
+    @FXML
+    public TableColumn<Animal,String> BreedColumn;
+    @FXML
+    public TableColumn<Animal,String> StatusColumn;
     @FXML  private Label nameLabel;
+    @FXML private TextField searchField;
+    @FXML private ComboBox<String> searchCriteria;
 
     private ObservableList<Animal> animalList = FXCollections.observableArrayList();
+    private final AnimalManager animalManager = AnimalManager.getInstance();
+    // Additional HashMaps for efficient searching
+    private final Map<String, Set<Animal>> typeIndex = new HashMap<>();
+    private final Map<String, Set<Animal>> breedIndex = new HashMap<>();
+    private final Map<String, Set<Animal>> statusIndex = new HashMap<>();
 
     @FXML
     public void initialize() {
-
-        //let's test try the List
-
-
-        // Observable list of animals
-
-        System.out.println("Initializing with " + animalList.size() + " animals");
-        // Hash map to store the data ;
-        HashMap<String, Animal> animalMap = new HashMap<>();
-
-        //animalMap.put("B01", new Animal("B01", "Bull 01", "Male", "4 years, 7 months", 1458.0, "Active", "Cattle"));
-        //animalMap.put("B02", new Animal("B02", "Bull 02", "Male", "3 years, 10 months", 1482.0, "Active", "Cattle"));
-        loadAnimalData();
+        // Initialize table columns
+        IdColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
         AnimalColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
         GenderColumn.setCellValueFactory(new PropertyValueFactory<>("gender"));
         AgeColumn.setCellValueFactory(new PropertyValueFactory<>("age"));
         LastWeightColumn.setCellValueFactory(new PropertyValueFactory<>("lastWeight"));
-        TypeColumn.setCellValueFactory(new PropertyValueFactory<>("breed"));
-     //   animalList = FXCollections.observableArrayList(animalMap.values());
-        AnimalTableView.setItems(animalList);
+        TypeColumn.setCellValueFactory(new PropertyValueFactory<>("type"));
+        BreedColumn.setCellValueFactory(new PropertyValueFactory<>("breed"));
+        StatusColumn.setCellValueFactory(new PropertyValueFactory<>("status"));
+
+        // Set up search criteria combo box
+        searchCriteria.setItems(FXCollections.observableArrayList(
+            "ID", "Name", "Type", "Breed", "Status", "All"
+        ));
+        searchCriteria.setValue("All");
+
+        // Bind table to animal list
+        AnimalTableView.setItems(animalManager.getAnimalList());
+
+        // Add search field listener
+        searchField.setOnKeyReleased(this::handleSearch);
+
+        // Initialize indexes
+        updateSearchIndexes();
 
         // on click it should open the animal detail page
         AnimalTableView.setOnMouseClicked(event -> {
@@ -68,9 +91,106 @@ public class LivestockController {
                 }
             }
         });
-
-
     }
+
+    private void updateSearchIndexes() {
+        // Clear existing indexes
+        typeIndex.clear();
+        breedIndex.clear();
+        statusIndex.clear();
+
+        // Rebuild indexes
+        for (Animal animal : animalManager.getAnimalList()) {
+            // Index by type
+            typeIndex.computeIfAbsent(animal.getType().toLowerCase(), k -> new HashSet<>()).add(animal);
+            
+            // Index by breed
+            breedIndex.computeIfAbsent(animal.getBreed().toLowerCase(), k -> new HashSet<>()).add(animal);
+            
+            // Index by status
+            statusIndex.computeIfAbsent(animal.getStatus().toLowerCase(), k -> new HashSet<>()).add(animal);
+        }
+    }
+
+    @FXML
+    private void handleSearch(KeyEvent event) {
+        String searchText = searchField.getText().toLowerCase().trim();
+        String criteria = searchCriteria.getValue();
+        
+        if (searchText.isEmpty()) {
+            AnimalTableView.setItems(animalManager.getAnimalList());
+            return;
+        }
+
+        Set<Animal> results = new HashSet<>();
+        
+        switch (criteria) {
+            case "ID":
+                // Changed to partial match for ID
+                animalManager.getAnimalList().forEach(a -> {
+                    if (a.getId().toLowerCase().contains(searchText)) {
+                        results.add(a);
+                    }
+                });
+                break;
+                
+            case "Name":
+                animalManager.getAnimalList().forEach(a -> {
+                    if (a.getName().toLowerCase().contains(searchText)) {
+                        results.add(a);
+                    }
+                });
+                break;
+                
+            case "Type":
+                // Changed to partial match for Type
+                animalManager.getAnimalList().forEach(a -> {
+                    if (a.getType().toLowerCase().contains(searchText)) {
+                        results.add(a);
+                    }
+                });
+                break;
+                
+            case "Breed":
+                // Changed to partial match for Breed
+                animalManager.getAnimalList().forEach(a -> {
+                    if (a.getBreed().toLowerCase().contains(searchText)) {
+                        results.add(a);
+                    }
+                });
+                break;
+                
+            case "Status":
+                // Changed to partial match for Status
+                animalManager.getAnimalList().forEach(a -> {
+                    if (a.getStatus().toLowerCase().contains(searchText)) {
+                        results.add(a);
+                    }
+                });
+                break;
+                
+            case "All":
+                // Search all fields
+                animalManager.getAnimalList().forEach(a -> {
+                    if (a.getId().toLowerCase().contains(searchText) ||
+                        a.getName().toLowerCase().contains(searchText) ||
+                        a.getType().toLowerCase().contains(searchText) ||
+                        a.getBreed().toLowerCase().contains(searchText) ||
+                        a.getStatus().toLowerCase().contains(searchText)) {
+                        results.add(a);
+                    }
+                });
+                break;
+        }
+        
+        // If no results found, show empty list instead of clearing the table
+        ObservableList<Animal> observableResults = FXCollections.observableArrayList(results);
+        AnimalTableView.setItems(observableResults);
+        
+        // Optional: Add this to show total results found
+        System.out.println("Search criteria: " + criteria + ", Query: " + searchText + ", Results found: " + results.size());
+    }
+
     private void openAnimalDetails(Animal animal) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("AnimalDetails.fxml"));
@@ -87,29 +207,28 @@ public class LivestockController {
             e.printStackTrace();
         }
     }
-    private void loadAnimalData() {
-       animalList.add(new Animal("A01", "Bella", "Female", "2 years, 5 months", 430.0, "Healthy", "Cow", "COW123", "Barn A", "Brown", "1.3m", 1.3, "2022-01-15","12-13-2002", "Toro", "0","calf"));
-       animalList.add(new Animal("A02", "Max", "Male", "3 years, 1 month", 520.5, "Healthy", "Bull", "BULL456", "Barn B", "Black", "1.5m", 1.5, "2025-01-15", "12-12-2001","Zeus", "0","calf2"));
-       animalList.add(new Animal("A03", "Daisy", "Female", "1 year, 9 months", 390.2, "Sick", "Cow", "COW789", "Barn C", "White", "1.2m", 1.8, "2023-01-15", "12-12-2002", "Bubu","0","calf3"));
 
-    }
     @FXML
     private void openAddAnimalPopup() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("AddAnimal.fxml"));
             Parent root = loader.load();
-
-            AddAnimalController controller = loader.getController();
-            controller.setAnimalList(animalList); // Inject the shared list
-
             Stage stage = new Stage();
-            stage.setTitle("Add New Animal");
+            stage.setTitle("Add Animal");
             stage.setScene(new Scene(root));
-            stage.show();
+            
+            // Show the dialog and wait for it to close
+            stage.showAndWait();
+            
+            // After dialog closes, update the search indexes
+            updateSearchIndexes();
+            
         } catch (IOException e) {
             e.printStackTrace();
+            showError("Error", "Could not open Add Animal window: " + e.getMessage());
         }
     }
+
     @FXML
     private void openTask() {
         try {
@@ -126,6 +245,11 @@ public class LivestockController {
         }
     }
 
-
-
+    private void showError(String title, String content) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(content);
+        alert.showAndWait();
+    }
 }
