@@ -140,6 +140,24 @@ public class TaskController {
             e.printStackTrace();
             System.err.println("Error loading Livestock.fxml: " + e.getMessage());
         }
+
+
+
+    }
+    @FXML
+    private void openSchedule() {
+        try {
+            FXMLLoader loader1 = new FXMLLoader(getClass().getResource("Schedule.fxml"));
+            Parent livestockRoot = loader1.load();
+
+            // Get current stage
+            Stage stage = (Stage) taskTableView.getScene().getWindow();
+            stage.setScene(new Scene(livestockRoot));
+            stage.setTitle("Schedule");
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 

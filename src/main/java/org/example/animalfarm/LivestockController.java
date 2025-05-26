@@ -244,6 +244,21 @@ public class LivestockController {
             e.printStackTrace();
         }
     }
+    @FXML
+    private void openSchedule() {
+        try {
+            FXMLLoader loader1 = new FXMLLoader(getClass().getResource("Schedule.fxml"));
+            Parent livestockRoot = loader1.load();
+
+            // Get current stage
+            Stage stage = (Stage) AnimalTableView.getScene().getWindow();
+            stage.setScene(new Scene(livestockRoot));
+            stage.setTitle("Schedule");
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     private void showError(String title, String content) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
