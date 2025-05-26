@@ -3,25 +3,38 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.VBox?>
-
-
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.cell.PropertyValueFactory?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" style="-fx-background-color: #9EBC8A;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.animalfarm.TaskController">
    <children>
-      <Button layoutX="321.0" layoutY="94.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="109.0" style="-fx-border-color: transparent; -fx-background-color: #D2D0A0; -fx-text-fill: #ffffff; -fx-font-family: Helvetica; -fx-font-size: 16px; -fx-font-weight: Bold;" text="ADD TASK" onAction="#openAddTaskPopup"/>
+      <Button layoutX="321.0" layoutY="94.0" mnemonicParsing="false" onAction="#openAddTaskPopup" prefHeight="41.0" prefWidth="109.0" style="-fx-border-color: transparent; -fx-background-color: #D2D0A0; -fx-text-fill: #ffffff; -fx-font-family: Helvetica; -fx-font-size: 16px; -fx-font-weight: Bold;" text="ADD TASK" />
       <AnchorPane layoutX="-4.0" layoutY="-2.0" prefHeight="804.0" prefWidth="273.0" style="-fx-background-color: #537D5D;">
          <children>
             <VBox layoutX="3.0" layoutY="142.0" prefHeight="487.0" prefWidth="271.0">
                <children>
                   <Button mnemonicParsing="false" prefHeight="41.0" prefWidth="270.0" style="-fx-border-color: transparent; -fx-background-color: #D2D0A0; -fx-text-fill: #ffffff; -fx-font-family: Helvetica; -fx-font-size: 16px; -fx-font-weight: Bold; -fx-background-color: rgba(255, 255, 255, 0.6);" text="Schedule" />
                   <Button mnemonicParsing="false" prefHeight="41.0" prefWidth="270.0" style="-fx-border-color: transparent; -fx-background-color: rgba(255, 255, 255, 0.6); -fx-text-fill: #ffffff; -fx-font-family: Helvetica; -fx-font-size: 16px; -fx-font-weight: Bold;" text="Tasks" />
-                  <Button mnemonicParsing="false" prefHeight="41.0" fx:id="livestockButton" prefWidth="270.0" style="-fx-border-color: transparent; -fx-background-color: rgba(255, 255, 255, 0.6); -fx-text-fill: #ffffff; -fx-font-family: Helvetica; -fx-font-size: 16px; -fx-font-weight: Bold;" text="Live Stock" onAction="#openLivestockPage" />
+                  <Button fx:id="livestockButton" mnemonicParsing="false" onAction="#openLivestockPage" prefHeight="41.0" prefWidth="270.0" style="-fx-border-color: transparent; -fx-background-color: rgba(255, 255, 255, 0.6); -fx-text-fill: #ffffff; -fx-font-family: Helvetica; -fx-font-size: 16px; -fx-font-weight: Bold;" text="Live Stock" />
                   <Button mnemonicParsing="false" prefHeight="41.0" prefWidth="270.0" style="-fx-border-color: transparent; -fx-background-color: rgba(255, 255, 255, 0.6); -fx-text-fill: #ffffff; -fx-font-family: Helvetica; -fx-font-size: 16px; -fx-font-weight: Bold;" text="Accounting" />
                   <Button mnemonicParsing="false" prefHeight="41.0" prefWidth="270.0" style="-fx-border-color: transparent; -fx-background-color: rgba(255, 255, 255, 0.6); -fx-text-fill: #ffffff; -fx-font-family: Helvetica; -fx-font-size: 16px; -fx-font-weight: Bold;" text="Market" />
                   <Button mnemonicParsing="false" prefHeight="41.0" prefWidth="270.0" style="-fx-border-color: transparent; -fx-background-color: rgba(255, 255, 255, 0.6); -fx-text-fill: #ffffff; -fx-font-family: Helvetica; -fx-font-size: 16px; -fx-font-weight: Bold;" text="Contacts" />
                   <Button mnemonicParsing="false" prefHeight="41.0" prefWidth="270.0" style="-fx-border-color: transparent; -fx-background-color: rgba(255, 255, 255, 0.6); -fx-text-fill: #ffffff; -fx-font-family: Helvetica; -fx-font-size: 16px; -fx-font-weight: Bold;" text="Reports" />
+               </children>
+            </VBox>
+            <VBox layoutX="6.0" layoutY="3.0" prefHeight="142.0" prefWidth="267.0">
+               <children>
+                  <ImageView fitHeight="135.0" fitWidth="265.0" pickOnBounds="true" preserveRatio="true" scaleX="1.22" scaleY="1.1">
+                     <image>
+                        <Image url="@images/logo.jpg" />
+                     </image>
+                  </ImageView>
                </children>
             </VBox>
          </children>
@@ -32,7 +45,7 @@
             <!-- Here I am going to create the check box part -->
             <TableColumn fx:id="checkboxColumn" prefWidth="50.0" text=" ">
                <cellValueFactory>
-                  <PropertyValueFactory property="done"/>
+                  <PropertyValueFactory property="done" />
                </cellValueFactory>
             </TableColumn>
             <TableColumn fx:id="taskColumn" prefWidth="164.45608520507812" text="Task" />
@@ -41,5 +54,14 @@
             <TableColumn fx:id="assigneeColumn" prefWidth="135.30072021484375" text="Assignee" />
             <TableColumn fx:id="dueColumn" prefWidth="166.2127685546875" text="Due Date" />
          </columns>
-      </TableView>   </children>
+      </TableView>
+      <HBox layoutX="292.0" layoutY="26.0" prefHeight="29.0" prefWidth="525.0">
+         <children>
+            <TextField fx:id="searchField" prefHeight="22.0" prefWidth="525.0" promptText="Search " style="-fx-background-color: black; -fx-background-radius: 15; -fx-border-radius: 15; -fx-opacity: 70%;">
+               <font>
+                  <Font size="19.0" />
+               </font>
+            </TextField>
+         </children>
+      </HBox>   </children>
 </AnchorPane>

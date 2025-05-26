@@ -1,5 +1,6 @@
 package org.example.animalfarm;
 
+import java.awt.*;
 import java.io.IOException;
 import java.util.HashMap;
 import javafx.collections.FXCollections;
@@ -31,6 +32,7 @@ public class LivestockController {
     public TableColumn<Animal,String> LastWeightColumn;
     @FXML
     public TableColumn<Animal,String> TypeColumn;
+    @FXML  private Label nameLabel;
 
     private ObservableList<Animal> animalList = FXCollections.observableArrayList();
 
@@ -103,6 +105,21 @@ public class LivestockController {
             Stage stage = new Stage();
             stage.setTitle("Add New Animal");
             stage.setScene(new Scene(root));
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    @FXML
+    private void openTask() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("Taskpage.fxml"));
+            Parent livestockRoot = loader.load();
+
+            // Get current stage
+            Stage stage = (Stage) AnimalTableView.getScene().getWindow();
+            stage.setScene(new Scene(livestockRoot));
+            stage.setTitle("Livestock");
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();
