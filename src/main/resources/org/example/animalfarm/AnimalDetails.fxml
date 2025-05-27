@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
@@ -8,16 +9,28 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" style="-fx-background-color: #9EBC8A;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.animalfarm.AnimalDetailsController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" style="-fx-background-color: #e5f2e5;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.animalfarm.AnimalDetailsController">
    <children>
       <AnchorPane layoutX="-4.0" layoutY="-2.0" prefHeight="804.0" prefWidth="273.0" style="-fx-background-color: #537D5D;">
          <children>
             <VBox layoutX="3.0" layoutY="142.0" prefHeight="487.0" prefWidth="271.0">
                <children>
-                  <Button mnemonicParsing="false" prefHeight="41.0" prefWidth="270.0" style="-fx-border-color: transparent; -fx-background-color: #D2D0A0; -fx-text-fill: #ffffff; -fx-font-family: Helvetica; -fx-font-size: 16px; -fx-font-weight: Bold; -fx-background-color: rgba(255, 255, 255, 0.6);" text="Schedule" />
-                  <Button mnemonicParsing="false" prefHeight="41.0" prefWidth="270.0" style="-fx-border-color: transparent; -fx-background-color: rgba(255, 255, 255, 0.6); -fx-text-fill: #ffffff; -fx-font-family: Helvetica; -fx-font-size: 16px; -fx-font-weight: Bold;" text="Tasks" />
-                  <Button fx:id="livestockButton" mnemonicParsing="false" onAction="#openLivestockPage" prefHeight="41.0" prefWidth="270.0" style="-fx-border-color: transparent; -fx-background-color: rgba(255, 255, 255, 0.6); -fx-text-fill: #ffffff; -fx-font-family: Helvetica; -fx-font-size: 16px; -fx-font-weight: Bold;" text="Live Stock" />
-                  <Button mnemonicParsing="false" prefHeight="41.0" prefWidth="270.0" style="-fx-border-color: transparent; -fx-background-color: rgba(255, 255, 255, 0.6); -fx-text-fill: #ffffff; -fx-font-family: Helvetica; -fx-font-size: 16px; -fx-font-weight: Bold;" text="Accounting" />
+                  <Button  onAction="#openSchedule" mnemonicParsing="false" prefHeight="41.0" prefWidth="270.0" style="-fx-border-color: transparent; -fx-background-color: #D2D0A0; -fx-text-fill: #ffffff; -fx-font-family: Helvetica; -fx-font-size: 16px; -fx-font-weight: Bold; -fx-background-color: rgba(255, 255, 255, 0.6);" text="Schedule">
+                     <graphic>
+                        <FontAwesomeIconView glyphName="CALENDAR" />
+                     </graphic></Button>
+                  <Button onAction="#openTask" mnemonicParsing="false" prefHeight="41.0" prefWidth="270.0" style="-fx-border-color: transparent; -fx-background-color: rgba(255, 255, 255, 0.6); -fx-text-fill: #ffffff; -fx-font-family: Helvetica; -fx-font-size: 16px; -fx-font-weight: Bold;" text="Tasks">
+                     <graphic>
+                        <FontAwesomeIconView glyphName="CHECK" />
+                     </graphic></Button>
+                  <Button fx:id="livestockButton" mnemonicParsing="false" onAction="#openLivestockPage" prefHeight="41.0" prefWidth="270.0" style="-fx-border-color: transparent; -fx-background-color: rgba(255, 255, 255, 0.6); -fx-text-fill: #ffffff; -fx-font-family: Helvetica; -fx-font-size: 16px; -fx-font-weight: Bold;" text="Live Stock">
+                     <graphic>
+                        <FontAwesomeIconView glyphName="FOLDER" />
+                     </graphic></Button>
+                  <Button mnemonicParsing="false" prefHeight="41.0" prefWidth="270.0" style="-fx-border-color: transparent; -fx-background-color: rgba(255, 255, 255, 0.6); -fx-text-fill: #ffffff; -fx-font-family: Helvetica; -fx-font-size: 16px; -fx-font-weight: Bold;" text="Accounting">
+                     <graphic>
+                        <FontAwesomeIconView glyphName="USER" />
+                     </graphic></Button>
                   <Button mnemonicParsing="false" prefHeight="41.0" prefWidth="270.0" style="-fx-border-color: transparent; -fx-background-color: rgba(255, 255, 255, 0.6); -fx-text-fill: #ffffff; -fx-font-family: Helvetica; -fx-font-size: 16px; -fx-font-weight: Bold;" text="Market" />
                   <Button mnemonicParsing="false" prefHeight="41.0" prefWidth="270.0" style="-fx-border-color: transparent; -fx-background-color: rgba(255, 255, 255, 0.6); -fx-text-fill: #ffffff; -fx-font-family: Helvetica; -fx-font-size: 16px; -fx-font-weight: Bold;" text="Contacts" />
                   <Button mnemonicParsing="false" prefHeight="41.0" prefWidth="270.0" style="-fx-border-color: transparent; -fx-background-color: rgba(255, 255, 255, 0.6); -fx-text-fill: #ffffff; -fx-font-family: Helvetica; -fx-font-size: 16px; -fx-font-weight: Bold;" text="Reports" />
@@ -34,63 +47,63 @@
             </VBox>
          </children>
       </AnchorPane>
-      <Text layoutX="339.0" layoutY="116.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: #ffffff; -fx-font-size: 30; -fx-font-weight: bold;" text="Basic Information" />
-      <Text layoutX="334.0" layoutY="363.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: #ffffff; -fx-font-size: 30; -fx-font-weight: bold;" text="Physical Characterstics" />
-      <Text layoutX="347.0" layoutY="588.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: #ffffff; -fx-font-size: 30; -fx-font-weight: bold;" text="Birth Information" />
+      <Text layoutX="339.0" layoutY="116.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: black; -fx-font-size: 30; -fx-font-weight: bold;" text="Basic Information" />
+      <Text layoutX="334.0" layoutY="363.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: black; -fx-font-size: 30; -fx-font-weight: bold;" text="Physical Characterstics" />
+      <Text layoutX="347.0" layoutY="588.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: black; -fx-font-size: 30; -fx-font-weight: bold;" text="Birth Information" />
       <VBox layoutX="351.0" layoutY="142.0" prefHeight="181.0" prefWidth="138.0" spacing="10.0">
          <children>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: #ffffff; -fx-font-size: 15; -fx-font-weight: bold;" text="Name or Label:" wrappingWidth="137.88665771484375" />
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: #ffffff; -fx-font-size: 15; -fx-font-weight: bold;" text="Animal Type" wrappingWidth="137.88665771484375" />
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: #ffffff; -fx-font-weight: bold; -fx-font-size: 15;" text="Tag Number" wrappingWidth="137.88665771484375" />
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: #ffffff; -fx-font-weight: bold; -fx-font-size: 15;" text="Status" wrappingWidth="137.88665771484375" />
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: #ffffff; -fx-font-weight: bold; -fx-font-size: 15;" text="Location" wrappingWidth="137.88665771484375" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: black; -fx-font-size: 15; -fx-font-weight: bold;" text="Name or Label:" wrappingWidth="137.88665771484375" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: black; -fx-font-size: 15; -fx-font-weight: bold;" text="Animal Type" wrappingWidth="137.88665771484375" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: black; -fx-font-weight: bold; -fx-font-size: 15;" text="Tag Number" wrappingWidth="137.88665771484375" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: black; -fx-font-weight: bold; -fx-font-size: 15;" text="Status" wrappingWidth="137.88665771484375" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: black; -fx-font-weight: bold; -fx-font-size: 15;" text="Location" wrappingWidth="137.88665771484375" />
          </children>
       </VBox>
       <VBox layoutX="488.0" layoutY="140.0" prefHeight="185.0" prefWidth="146.0" spacing="13.0">
          <children>
-            <Label fx:id="nameLabel" prefHeight="17.0" prefWidth="196.0" style="-fx-text-fill: white;" text="name" />
-            <Label fx:id="TypeLabel" prefHeight="17.0" prefWidth="196.0" style="-fx-text-fill: white;" text="Type" />
-            <Label fx:id="TagLabel" prefHeight="17.0" prefWidth="196.0" style="-fx-text-fill: white;" text="Tag" />
-            <Label fx:id="statusLabel" prefHeight="17.0" prefWidth="196.0" style="-fx-text-fill: white;" text="Status" />
-            <Label fx:id="LocationLabel" prefHeight="17.0" prefWidth="196.0" style="-fx-text-fill: white;" text="Location" />
+            <Label fx:id="nameLabel" prefHeight="17.0" prefWidth="196.0" style="-fx-text-fill: black;" text="name" />
+            <Label fx:id="TypeLabel" prefHeight="17.0" prefWidth="196.0" style="-fx-text-fill: black;" text="Type" />
+            <Label fx:id="TagLabel" prefHeight="17.0" prefWidth="196.0" style="-fx-text-fill: black;" text="Tag" />
+            <Label fx:id="statusLabel" prefHeight="17.0" prefWidth="196.0" style="-fx-text-fill: black;" text="Status" />
+            <Label fx:id="LocationLabel" prefHeight="17.0" prefWidth="196.0" style="-fx-text-fill: black;" text="Location" />
          </children>
       </VBox>
       <VBox layoutX="339.0" layoutY="379.0" prefHeight="181.0" prefWidth="138.0" spacing="10.0">
          <children>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: #ffffff; -fx-font-size: 15; -fx-font-weight: bold;" text="Sex" wrappingWidth="137.88665771484375" />
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: #ffffff; -fx-font-size: 15; -fx-font-weight: bold;" text="Breed" wrappingWidth="137.88665771484375" />
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: #ffffff; -fx-font-weight: bold; -fx-font-size: 15;" text="Coloring" wrappingWidth="137.88665771484375" />
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: #ffffff; -fx-font-weight: bold; -fx-font-size: 15;" text="Weight" wrappingWidth="137.88665771484375" />
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: #ffffff; -fx-font-weight: bold; -fx-font-size: 15;" text="Height" wrappingWidth="137.88665771484375" />
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: #ffffff; -fx-font-weight: bold; -fx-font-size: 15;" text="Last Measured" wrappingWidth="137.88665771484375" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: black; -fx-font-size: 15; -fx-font-weight: bold;" text="Sex" wrappingWidth="137.88665771484375" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: black; -fx-font-size: 15; -fx-font-weight: bold;" text="Breed" wrappingWidth="137.88665771484375" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: black; -fx-font-weight: bold; -fx-font-size: 15;" text="Coloring" wrappingWidth="137.88665771484375" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: black; -fx-font-weight: bold; -fx-font-size: 15;" text="Weight" wrappingWidth="137.88665771484375" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: black; -fx-font-weight: bold; -fx-font-size: 15;" text="Height" wrappingWidth="137.88665771484375" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: black; -fx-font-weight: bold; -fx-font-size: 15;" text="Last Measured" wrappingWidth="137.88665771484375" />
          </children>
       </VBox>
       <VBox layoutX="349.0" layoutY="603.0" prefHeight="181.0" prefWidth="138.0" spacing="10.0">
          <children>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: #ffffff; -fx-font-size: 15; -fx-font-weight: bold;" text="Age" wrappingWidth="137.88665771484375" />
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: #ffffff; -fx-font-size: 15; -fx-font-weight: bold;" text="BirthDate" wrappingWidth="137.88665771484375" />
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: #ffffff; -fx-font-weight: bold; -fx-font-size: 15;" text="Maternity" wrappingWidth="137.88665771484375" />
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: #ffffff; -fx-font-weight: bold; -fx-font-size: 15;" text="Paternity" wrappingWidth="137.88665771484375" />
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: #ffffff; -fx-font-weight: bold; -fx-font-size: 15;" text="Offspring" wrappingWidth="137.88665771484375" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: black; -fx-font-size: 15; -fx-font-weight: bold;" text="Age" wrappingWidth="137.88665771484375" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: black; -fx-font-size: 15; -fx-font-weight: bold;" text="BirthDate" wrappingWidth="137.88665771484375" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: black; -fx-font-weight: bold; -fx-font-size: 15;" text="Maternity" wrappingWidth="137.88665771484375" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: black; -fx-font-weight: bold; -fx-font-size: 15;" text="Paternity" wrappingWidth="137.88665771484375" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: black; -fx-font-weight: bold; -fx-font-size: 15;" text="Offspring" wrappingWidth="137.88665771484375" />
          </children>
       </VBox>
       <VBox layoutX="482.0" layoutY="377.0" prefHeight="185.0" prefWidth="146.0" spacing="12.0">
          <children>
-            <Label fx:id="genderLabel" prefHeight="17.0" prefWidth="196.0" style="-fx-text-fill: white;" text="sex" />
-            <Label fx:id="breedLabel" prefHeight="17.0" prefWidth="196.0" style="-fx-text-fill: white;" text="Breed" />
-            <Label fx:id="colorLabel" prefHeight="17.0" prefWidth="196.0" style="-fx-text-fill: white;" text="Color" />
-            <Label fx:id="weightLabel" prefHeight="17.0" prefWidth="196.0" style="-fx-text-fill: white;" text="Weight" />
-            <Label fx:id="HeightLabel" prefHeight="17.0" prefWidth="196.0" style="-fx-text-fill: white;" text="Height" />
-            <Label fx:id="LastmeasuredLabel" prefHeight="17.0" prefWidth="196.0" style="-fx-text-fill: white;" text="Location" />
+            <Label fx:id="genderLabel" prefHeight="17.0" prefWidth="196.0" style="-fx-text-fill: black;" text="sex" />
+            <Label fx:id="breedLabel" prefHeight="17.0" prefWidth="196.0" style="-fx-text-fill: black;" text="Breed" />
+            <Label fx:id="colorLabel" prefHeight="17.0" prefWidth="196.0" style="-fx-text-fill: black;" text="Color" />
+            <Label fx:id="weightLabel" prefHeight="17.0" prefWidth="196.0" style="-fx-text-fill: black;" text="Weight" />
+            <Label fx:id="HeightLabel" prefHeight="17.0" prefWidth="196.0" style="-fx-text-fill: black;" text="Height" />
+            <Label fx:id="LastmeasuredLabel" prefHeight="17.0" prefWidth="196.0" style="-fx-text-fill: black;" text="Location" />
          </children>
       </VBox>
       <VBox layoutX="483.0" layoutY="601.0" prefHeight="185.0" prefWidth="146.0" spacing="13.0">
          <children>
-            <Label fx:id="ageLabel" prefHeight="17.0" prefWidth="196.0" style="-fx-text-fill: white;" text="Age" />
-            <Label fx:id="BirthdayLabel" prefHeight="17.0" prefWidth="196.0" style="-fx-text-fill: white;" text="Birthdate" />
-            <Label fx:id="MaternityLabel" prefHeight="17.0" prefWidth="196.0" style="-fx-text-fill: white;" text="Maternity" />
-            <Label fx:id="PaternityLabel" prefHeight="17.0" prefWidth="196.0" style="-fx-text-fill: white;" text="Paternity" />
-            <Label fx:id="OffspringLabel" prefHeight="17.0" prefWidth="196.0" style="-fx-text-fill: white;" text="Offspring" />
+            <Label fx:id="ageLabel" prefHeight="17.0" prefWidth="196.0" style="-fx-text-fill: black;" text="Age" />
+            <Label fx:id="BirthdayLabel" prefHeight="17.0" prefWidth="196.0" style="-fx-text-fill: black;" text="Birthdate" />
+            <Label fx:id="MaternityLabel" prefHeight="17.0" prefWidth="196.0" style="-fx-text-fill: black;" text="Maternity" />
+            <Label fx:id="PaternityLabel" prefHeight="17.0" prefWidth="196.0" style="-fx-text-fill: black;" text="Paternity" />
+            <Label fx:id="OffspringLabel" prefHeight="17.0" prefWidth="196.0" style="-fx-text-fill: black;" text="Offspring" />
          </children>
       </VBox>
    </children>

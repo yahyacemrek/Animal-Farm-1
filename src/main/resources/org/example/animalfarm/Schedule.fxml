@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -10,9 +12,15 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" style="-fx-background-color: #9EBC8A;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.animalfarm.ScheduleController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" style="-fx-background-color: #e5f2e5;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.animalfarm.ScheduleController">
    <children>
+      <ImageView fitHeight="800.0" fitWidth="1200.0" opacity="0.5" pickOnBounds="true" preserveRatio="false">
+         <image>
+            <Image url="@images/horse.jpeg" />
+         </image>
+      </ImageView>
       <AnchorPane layoutX="-4.0" layoutY="-2.0" prefHeight="804.0" prefWidth="273.0" style="-fx-background-color: #537D5D;">
          <children>
             <VBox layoutX="3.0" layoutY="142.0" prefHeight="487.0" prefWidth="271.0">
@@ -22,7 +30,7 @@
                         <FontAwesomeIconView glyphName="CALENDAR" />
                      </graphic>
                   </Button>
-                  <Button fx:id="TaskButton" mnemonicParsing="false" prefHeight="41.0" prefWidth="270.0" style="-fx-border-color: transparent; -fx-background-color: rgba(255, 255, 255, 0.6); -fx-text-fill: #ffffff; -fx-font-family: Helvetica; -fx-font-size: 16px; -fx-font-weight: Bold;" text=" Tasks" onAction="#openTask">
+                  <Button fx:id="TaskButton" mnemonicParsing="false" onAction="#openTask" prefHeight="41.0" prefWidth="270.0" style="-fx-border-color: transparent; -fx-background-color: rgba(255, 255, 255, 0.6); -fx-text-fill: #ffffff; -fx-font-family: Helvetica; -fx-font-size: 16px; -fx-font-weight: Bold;" text=" Tasks">
                      <graphic>
                         <FontAwesomeIconView glyphName="CHECK" />
                      </graphic>
@@ -32,7 +40,7 @@
                         <FontAwesomeIconView glyphName="FOLDER" />
                      </graphic>
                   </Button>
-                  <Button mnemonicParsing="false" prefHeight="41.0" prefWidth="270.0" style="-fx-border-color: transparent; -fx-background-color: rgba(255, 255, 255, 0.6); -fx-text-fill: #ffffff; -fx-font-family: Helvetica; -fx-font-size: 16px; -fx-font-weight: Bold;" text=" Accounting">
+                  <Button onAction="#openAccounting" mnemonicParsing="false" prefHeight="41.0" prefWidth="270.0" style="-fx-border-color: transparent; -fx-background-color: rgba(255, 255, 255, 0.6); -fx-text-fill: #ffffff; -fx-font-family: Helvetica; -fx-font-size: 16px; -fx-font-weight: Bold;" text=" Accounting">
                      <graphic>
                         <FontAwesomeIconView glyphName="USER" />
                      </graphic>
@@ -62,7 +70,7 @@
             </TextField>
          </children>
       </HBox>
-      <HBox layoutX="640.0" layoutY="109.0" prefHeight="116.0" prefWidth="441.0" spacing="30.0" style="-fx-border-color: black; -fx-border-radius: 30; -fx-background-color: #333; -fx-background-radius: 30;">
+      <HBox layoutX="742.0" layoutY="86.0" prefHeight="116.0" prefWidth="441.0" spacing="30.0" style="-fx-border-color: #cccccc; -fx-border-radius: 30; -fx-background-color: transparent; -fx-background-radius: 30;">
          <children>
             <VBox prefHeight="107.0" prefWidth="131.0" style="-fx-alignment: CENTER;">
                <children>
@@ -70,8 +78,11 @@
                      <image>
                         <Image url="@images/sheep.png" />
                      </image>
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
                   </ImageView>
-                  <Label prefHeight="56.0" prefWidth="135.0" style="-fx-alignment: CENTER;" text="Hello" textAlignment="RIGHT" textFill="WHITE" />
+                  <Label prefHeight="56.0" prefWidth="135.0" style="-fx-alignment: CENTER;" text="Hello" textAlignment="RIGHT" />
                </children>
             </VBox>
             <VBox prefHeight="107.0" prefWidth="117.0" style="-fx-alignment: CENTER;">
@@ -80,8 +91,11 @@
                      <image>
                         <Image url="@images/goat.png" />
                      </image>
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
                   </ImageView>
-                  <Label prefHeight="56.0" prefWidth="135.0" style="-fx-alignment: CENTER;" text="Hello" textAlignment="RIGHT" textFill="WHITE" />
+                  <Label prefHeight="56.0" prefWidth="135.0" style="-fx-alignment: CENTER;" text="Merhaba" textAlignment="RIGHT" />
                </children>
             </VBox>
             <VBox prefHeight="200.0" prefWidth="100.0" style="-fx-alignment: center;">
@@ -90,11 +104,81 @@
                      <image>
                         <Image url="@images/cow.png" />
                      </image>
+                     <VBox.margin>
+                        <Insets right="1.0" top="10.0" />
+                     </VBox.margin>
                   </ImageView>
-                  <Label prefHeight="56.0" prefWidth="135.0" style="-fx-alignment: CENTER;" text="Hello" textAlignment="RIGHT" textFill="WHITE" />
+                  <Label prefHeight="56.0" prefWidth="135.0" style="-fx-alignment: CENTER;" text="Hola" textAlignment="RIGHT" />
                </children>
             </VBox>
          </children>
       </HBox>
+      <VBox layoutX="280.0" layoutY="20.0" prefWidth="900.0" spacing="20.0" />
+      <VBox fx:id="urgentTasksBox" layoutX="290.0" layoutY="464.0" prefHeight="263.0" prefWidth="533.0" spacing="10" style="-fx-background-color: white; -fx-background-radius: 10;">
+         <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 18;" text="TOP UPCOMING TASKS">
+            <VBox.margin>
+               <Insets bottom="10" left="10" top="10" />
+            </VBox.margin>
+         </Text>
+         <ListView fx:id="urgentTasksList" prefHeight="200.0" style="-fx-background-color: transparent;" VBox.vgrow="ALWAYS">
+            <VBox.margin>
+               <Insets bottom="10" left="10" right="10" />
+            </VBox.margin>
+         </ListView>
+      </VBox>
+      <VBox layoutX="312.0" layoutY="108.0" prefHeight="267.0" prefWidth="292.0" spacing="10.0" style="-fx-border-color: #cccccc; -fx-border-radius: 15;">
+         <children>
+            <HBox prefHeight="136.0" prefWidth="308.0">
+               <children>
+                  <VBox spacing="10.0" style="-fx-background-radius: 10; -fx-background-color: transparent;">
+                     <ImageView fitHeight="134.0" fitWidth="132.0" pickOnBounds="true" preserveRatio="true">
+                        <image>
+                           <Image url="@../../../../../../../../../../private/var/folders/4_/nnj7xtrs3_v818g5ntvvf5zr0000gp/T/com.apple.Photos.NSItemProvider/uuid=898CB212-3A7E-4E68-8B83-39D75C7F07E2&amp;code=001&amp;library=1&amp;type=1&amp;mode=1&amp;loc=true&amp;cap=true.png/Subject.png" />
+                        </image>
+                     </ImageView>
+                     <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 16; -fx-font-weight: bold;" text="Todays Weather">
+                        <VBox.margin>
+                           <Insets bottom="10" left="10" top="10" />
+                        </VBox.margin>
+                        <font>
+                           <Font size="22.0" />
+                        </font>
+                     </Text>
+                  </VBox>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 60;" text="41F">
+                     <font>
+                        <Font size="48.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="31.0" />
+                     </HBox.margin>
+                  </Text>
+               </children>
+            </HBox>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 16;" text="Few Clouds:">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Text>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 16;" text="Sunset:8:30">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Text>
+            <Text fill="#070000" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 16;" text="Wind :1mphs">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Text>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 16;" text="Humidity:76%:">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Text>
+         </children>
+         <padding>
+            <Insets bottom="10.0" left="10.0" right="1.0" />
+         </padding>
+      </VBox>
    </children>
 </AnchorPane>

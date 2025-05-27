@@ -1,6 +1,5 @@
 package org.example.animalfarm;
 
-
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -15,39 +14,28 @@ public class AddTaskController {
     private TextField taskField;
     @FXML
     private DatePicker dueField;
-
     @FXML
     private ComboBox<String> priorityComboBox;
     @FXML
     private ComboBox<String> statusComboBox;
-
     @FXML
     private ComboBox<String> AssigneeComboBox;
-
-    @FXML
-    private ObservableList<Task> taskList;
     @FXML
     private Button createButton;
 
-    private TaskController taskController; // Reference to main controller
+    private final TaskManager taskManager = TaskManager.getInstance();
 
-    public void setTaskController(TaskController controller) {
-        this.taskController = controller;
-    }
-    public void setTaskList(ObservableList<Task> taskList) {
-        this.taskList = taskList;
-    }
+    @FXML
     public void initialize() {
         // Set priority options in ComboBox
         priorityComboBox.getItems().addAll("Low", "Medium", "High");
         priorityComboBox.setValue("Medium");
 
-        statusComboBox.getItems().addAll("Not Started","In Progress","Finished");
+        statusComboBox.getItems().addAll("Not Started", "In Progress", "Finished");
         statusComboBox.setValue("Not Started");
 
-        AssigneeComboBox.getItems().addAll("Gina","Eyup","Bereket");
+        AssigneeComboBox.getItems().addAll("Gina", "Eyup", "Bereket");
         AssigneeComboBox.setValue("Bereket");
-
     }
 
     @FXML
@@ -58,15 +46,17 @@ public class AddTaskController {
         String status = statusComboBox.getValue();
         String assignee = AssigneeComboBox.getValue();
 
-        // new task object
+        // Create new task and add it to TaskManager
         Task newTask = new Task(taskName, dueDate, priority, status, assignee);
+        taskManager.addTask(newTask);
 
-        taskList.add(newTask);
+        // Close the window
+        handleClose();
     }
+
     @FXML
     private void handleClose() {
-        Stage s = (Stage) taskField.getScene().getWindow();
-        s.close();
+        Stage stage = (Stage) taskField.getScene().getWindow();
+        stage.close();
     }
-
 }

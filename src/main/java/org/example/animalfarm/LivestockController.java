@@ -259,6 +259,21 @@ public class LivestockController {
             e.printStackTrace();
         }
     }
+    @FXML
+    private void openAccounting() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("Accounting.fxml"));
+            Parent livestockRoot = loader.load();
+
+            // Get current stage
+            Stage stage = (Stage) AnimalTableView.getScene().getWindow();
+            stage.setScene(new Scene(livestockRoot));
+            stage.setTitle("Accounting");
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     private void showError(String title, String content) {
         Alert alert = new Alert(Alert.AlertType.ERROR);

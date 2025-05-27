@@ -63,5 +63,36 @@ public class AnimalDetailsController {
             e.printStackTrace();
         }
     }
+    @FXML
+    private void openSchedule() {
+        try {
+            FXMLLoader loader1 = new FXMLLoader(getClass().getResource("Schedule.fxml"));
+            Parent livestockRoot = loader1.load();
+
+            // Get current stage
+            Stage stage = (Stage) nameLabel.getScene().getWindow();
+            stage.setScene(new Scene(livestockRoot));
+            stage.setTitle("Schedule");
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    @FXML
+    private void openTask() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("Taskpage.fxml"));
+            Parent livestockRoot = loader.load();
+
+            // Get current stage
+            Stage stage = (Stage) nameLabel.getScene().getWindow();
+            stage.setScene(new Scene(livestockRoot));
+            stage.setTitle("Livestock");
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 
 }

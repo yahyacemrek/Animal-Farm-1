@@ -12,13 +12,13 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" style="-fx-background-color: #9EBC8A;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.animalfarm.LivestockController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" style="-fx-background-color: #e5f2e5;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.animalfarm.LivestockController">
    <children>
       <AnchorPane layoutX="-4.0" layoutY="-2.0" prefHeight="804.0" prefWidth="273.0" style="-fx-background-color: #537D5D;">
          <children>
             <VBox layoutX="3.0" layoutY="142.0" prefHeight="487.0" prefWidth="53.0">
                <children>
-                  <Button  onAction="#openSchedule" mnemonicParsing="false" prefHeight="41.0" prefWidth="270.0" style="-fx-border-color: transparent; -fx-background-color: #D2D0A0; -fx-text-fill: #ffffff; -fx-font-family: Helvetica; -fx-font-size: 16px; -fx-font-weight: Bold; -fx-background-color: rgba(255, 255, 255, 0.6);">
+                  <Button mnemonicParsing="false" onAction="#openSchedule" prefHeight="41.0" prefWidth="270.0" style="-fx-border-color: transparent; -fx-background-color: #D2D0A0; -fx-text-fill: #ffffff; -fx-font-family: Helvetica; -fx-font-size: 16px; -fx-font-weight: Bold; -fx-background-color: rgba(255, 255, 255, 0.6);">
                      <graphic>
                         <FontAwesomeIconView glyphName="CALENDAR" />
                      </graphic></Button>
@@ -30,10 +30,11 @@
                      <graphic>
                         <FontAwesomeIconView glyphName="FOLDER" />
                      </graphic></Button>
-                  <Button mnemonicParsing="false" prefHeight="41.0" prefWidth="270.0" style="-fx-border-color: transparent; -fx-background-color: rgba(255, 255, 255, 0.6); -fx-text-fill: #ffffff; -fx-font-family: Helvetica; -fx-font-size: 16px; -fx-font-weight: Bold;">
+                  <Button mnemonicParsing="false" onAction="#openAccounting" prefHeight="41.0" prefWidth="270.0" style="-fx-border-color: transparent; -fx-background-color: rgba(255, 255, 255, 0.6); -fx-text-fill: #ffffff; -fx-font-family: Helvetica; -fx-font-size: 16px; -fx-font-weight: Bold;" text="Accounting">
                      <graphic>
                         <FontAwesomeIconView glyphName="USER" />
-                     </graphic></Button>
+                     </graphic>
+                  </Button>
                   <Button mnemonicParsing="false" prefHeight="41.0" prefWidth="270.0" style="-fx-border-color: transparent; -fx-background-color: rgba(255, 255, 255, 0.6); -fx-text-fill: #ffffff; -fx-font-family: Helvetica; -fx-font-size: 16px; -fx-font-weight: Bold;">
                      <graphic>
                         <FontAwesomeIconView glyphName="MONEY" />

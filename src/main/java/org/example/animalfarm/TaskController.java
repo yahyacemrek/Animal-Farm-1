@@ -37,12 +37,36 @@ public class TaskController {
     @FXML
     private TableColumn<Task, String> assigneeColumn;
 
-    // ObservableList to hold tasks
-    private ObservableList<Task> taskList = FXCollections.observableArrayList();
+    // Use TaskManager instead of local ObservableList
+    private final TaskManager taskManager = TaskManager.getInstance();
+
+    // Method to get urgent tasks
+    public ObservableList<Task> getUrgentTasks() {
+        ObservableList<Task> urgentTasks = FXCollections.observableArrayList();
+        for (Task task : taskManager.getTaskList()) {
+            if (!task.isDone() && (task.isUrgent() || task.isDueToday())) {
+                urgentTasks.add(task);
+            }
+        }
+        return urgentTasks;
+    }
+
+    // Method to get tasks due today
+    public ObservableList<Task> getTodaysTasks() {
+        ObservableList<Task> todaysTasks = FXCollections.observableArrayList();
+        for (Task task : taskManager.getTaskList()) {
+            if (!task.isDone() && task.isDueToday()) {
+                todaysTasks.add(task);
+            }
+        }
+        return todaysTasks;
+    }
 
     // Initialize the TableView and data
     @FXML
     public void initialize() {
+        System.out.println("Initializing TaskController...");
+        
         taskTableView.setEditable(true);
         checkboxColumn.setEditable(true);
 
@@ -52,72 +76,72 @@ public class TaskController {
         priorityColumn.setCellValueFactory(new PropertyValueFactory<>("priority"));
         statusColumn.setCellValueFactory(new PropertyValueFactory<>("status"));
         assigneeColumn.setCellValueFactory(new PropertyValueFactory<>("assignee"));
-
         checkboxColumn.setCellValueFactory(cellData -> cellData.getValue().doneProperty());
 
-        checkboxColumn.setCellFactory(column -> {
-            return new CheckBoxTableCell<>() {
-                {
-                    setSelectedStateCallback(index -> {
-                        if (index >= 0 && index < taskTableView.getItems().size()) {
-                            Task task = taskTableView.getItems().get(index);
-                            // Add listener to delete the task when checkbox is checked
-                            task.doneProperty().addListener((obs, wasDone, isDone) -> {
-                                if (isDone) {
-                                    // Remove the task from the list
-                                    // Delay before removing
-                                    PauseTransition delay = new PauseTransition(Duration.seconds(0.5));
-                                    delay.setOnFinished(e -> taskList.remove(task));
-                                    delay.play();
-                                }
-                            });
-                            return task.doneProperty();
-                        } else {
-                            return null;
-                        }
-                    });
-                }
-            };
+        // Set up checkbox column
+        checkboxColumn.setCellFactory(column -> new CheckBoxTableCell<>() {
+            {
+                setSelectedStateCallback(index -> {
+                    if (index >= 0 && index < taskTableView.getItems().size()) {
+                        Task task = taskTableView.getItems().get(index);
+                        task.doneProperty().addListener((obs, wasDone, isDone) -> {
+                            if (isDone) {
+                                PauseTransition delay = new PauseTransition(Duration.seconds(0.5));
+                                delay.setOnFinished(e -> taskManager.removeTask(task));
+                                delay.play();
+                            }
+                        });
+                        return task.doneProperty();
+                    }
+                    return null;
+                });
+            }
         });
 
-
-        // Populate the TableView with sample data
-        loadData();
-        taskTableView.setItems(taskList);
+        // Bind the TableView directly to TaskManager's observable list
+        taskTableView.setItems(taskManager.getTaskList());
+        
+        // Print current tasks for debugging
+        System.out.println("Current tasks in TableView: " + taskTableView.getItems().size());
+        for (Task task : taskTableView.getItems()) {
+            System.out.println("- " + task.getTaskName() + " (Due: " + task.getDueDate() + ")");
+        }
     }
 
-    // Method to load sample task data
-    private void loadData() {
-        taskList.add(new Task("Water the plants", "2025-05-20", "High", "Pending", "John"));
-        taskList.add(new Task("Harvest crops", "2025-06-01", "Medium", "In Progress", "Anna"));
-        taskList.add(new Task("Fix irrigation", "2025-05-15", "Low", "Completed", "Mike"));
-    }
-
-    // Method to add a new task (this could be connected to an "Add Task" button)
+    // Method to add a new task
     public void addTask(String taskName, String dueDate, String priority, String status, String assignee) {
-        taskList.add(new Task(taskName, dueDate, priority, status, assignee));
+        Task newTask = new Task(taskName, dueDate, priority, status, assignee);
+        taskManager.addTask(newTask);
+        
+        // Print tasks after adding for debugging
+        System.out.println("Tasks after adding new task:");
+        for (Task task : taskTableView.getItems()) {
+            System.out.println("- " + task.getTaskName() + " (Due: " + task.getDueDate() + ")");
+        }
     }
 
-    //  "Delete Task" not used yet
+    // Delete task method
     public void deleteTask(Task task) {
-        taskList.remove(task);
+        taskManager.removeTask(task);
     }
-   // For Add Task
+
+    // For Add Task
     public void openAddTaskPopup() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("AddTask.fxml"));
             Parent root = loader.load();
-
-            AddTaskController popup = loader.getController();
-
-
-            popup.setTaskList(this.taskList);
 
             Stage popupStage = new Stage();
             popupStage.initModality(Modality.APPLICATION_MODAL);
             popupStage.setScene(new Scene(root));
             popupStage.setTitle("Add New Task");
             popupStage.showAndWait();
+            
+            // Print tasks after popup closes for debugging
+            System.out.println("Tasks after popup closes:");
+            for (Task task : taskTableView.getItems()) {
+                System.out.println("- " + task.getTaskName() + " (Due: " + task.getDueDate() + ")");
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -140,26 +164,33 @@ public class TaskController {
             e.printStackTrace();
             System.err.println("Error loading Livestock.fxml: " + e.getMessage());
         }
-
-
-
     }
     @FXML
     private void openSchedule() {
         try {
-            FXMLLoader loader1 = new FXMLLoader(getClass().getResource("Schedule.fxml"));
-            Parent livestockRoot = loader1.load();
-
-            // Get current stage
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("Schedule.fxml"));
+            Parent root = loader.load();
             Stage stage = (Stage) taskTableView.getScene().getWindow();
-            stage.setScene(new Scene(livestockRoot));
+            stage.setScene(new Scene(root));
             stage.setTitle("Schedule");
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
+    @FXML
+    private void openAccounting() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("Accounting.fxml"));
+            Parent livestockRoot = loader.load();
 
-
-
+            // Get current stage
+            Stage stage = (Stage) taskTableView.getScene().getWindow();
+            stage.setScene(new Scene(livestockRoot));
+            stage.setTitle("Accounting");
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }

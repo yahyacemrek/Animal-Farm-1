@@ -13,14 +13,14 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" style="-fx-background-color: #9EBC8A;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.animalfarm.TaskController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" style="-fx-background-color: #e5f2e5;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.animalfarm.TaskController">
    <children>
       <Button layoutX="321.0" layoutY="94.0" mnemonicParsing="false" onAction="#openAddTaskPopup" prefHeight="41.0" prefWidth="109.0" style="-fx-border-color: transparent; -fx-background-color: #D2D0A0; -fx-text-fill: #ffffff; -fx-font-family: Helvetica; -fx-font-size: 16px; -fx-font-weight: Bold;" text="ADD TASK" />
       <AnchorPane layoutX="-4.0" layoutY="-2.0" prefHeight="804.0" prefWidth="273.0" style="-fx-background-color: #537D5D;">
          <children>
             <VBox layoutX="3.0" layoutY="142.0" prefHeight="487.0" prefWidth="271.0">
                <children>
-                  <Button mnemonicParsing="false" prefHeight="41.0" prefWidth="270.0" style="-fx-border-color: transparent; -fx-background-color: #D2D0A0; -fx-text-fill: #ffffff; -fx-font-family: Helvetica; -fx-font-size: 16px; -fx-font-weight: Bold; -fx-background-color: rgba(255, 255, 255, 0.6);" text="  Schedule" onAction="#openSchedule">
+                  <Button mnemonicParsing="false" onAction="#openSchedule" prefHeight="41.0" prefWidth="270.0" style="-fx-border-color: transparent; -fx-background-color: #D2D0A0; -fx-text-fill: #ffffff; -fx-font-family: Helvetica; -fx-font-size: 16px; -fx-font-weight: Bold; -fx-background-color: rgba(255, 255, 255, 0.6);" text="  Schedule">
                      <graphic>
                         <FontAwesomeIconView glyphName="CALENDAR" />
                      </graphic></Button>
@@ -32,7 +32,7 @@
                      <graphic>
                         <FontAwesomeIconView glyphName="FOLDER" />
                      </graphic></Button>
-                  <Button mnemonicParsing="false" prefHeight="41.0" prefWidth="270.0" style="-fx-border-color: transparent; -fx-background-color: rgba(255, 255, 255, 0.6); -fx-text-fill: #ffffff; -fx-font-family: Helvetica; -fx-font-size: 16px; -fx-font-weight: Bold;" text=" Accounting">
+                  <Button  onAction="#openAccounting" mnemonicParsing="false" prefHeight="41.0" prefWidth="270.0" style="-fx-border-color: transparent; -fx-background-color: rgba(255, 255, 255, 0.6); -fx-text-fill: #ffffff; -fx-font-family: Helvetica; -fx-font-size: 16px; -fx-font-weight: Bold;" text=" Accounting">
                      <graphic>
                         <FontAwesomeIconView glyphName="USER" />
                      </graphic></Button>
