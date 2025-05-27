@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="427.0" prefWidth="642.0" style="-fx-background-color: #D2D0A0;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.animalfarm.AddTaskController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="427.0" prefWidth="642.0" style="-fx-background-color: #e5f2e5;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.animalfarm.AddTaskController">
    <children>
       <Text layoutX="50.0" layoutY="39.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold; -fx-font-family: Helvetica; -fx-font-size: 20px;" text="Add Task" />
       <VBox layoutX="14.0" layoutY="57.0" prefHeight="294.0" prefWidth="575.0" spacing="10.0">
@@ -32,8 +32,8 @@
       </VBox>
       <HBox layoutX="490.0" layoutY="387.0" prefHeight="26.0" prefWidth="126.0" spacing="15.0">
          <children>
-            <Button  mnemonicParsing="false" text="Close" onAction="#handleClose" />
-            <Button fx:id="createButton" mnemonicParsing="false" text="Create" onAction="#handleCreateTask" />
+            <Button mnemonicParsing="false" onAction="#handleClose" text="Close" />
+            <Button fx:id="createButton" mnemonicParsing="false" onAction="#handleCreateTask" text="Create" />
          </children>
       </HBox>
    </children>

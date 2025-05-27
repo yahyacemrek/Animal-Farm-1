@@ -15,11 +15,11 @@
          <children>
             <VBox layoutX="3.0" layoutY="142.0" prefHeight="487.0" prefWidth="271.0">
                <children>
-                  <Button  onAction="#openSchedule" mnemonicParsing="false" prefHeight="41.0" prefWidth="270.0" style="-fx-border-color: transparent; -fx-background-color: #D2D0A0; -fx-text-fill: #ffffff; -fx-font-family: Helvetica; -fx-font-size: 16px; -fx-font-weight: Bold; -fx-background-color: rgba(255, 255, 255, 0.6);" text="Schedule">
+                  <Button mnemonicParsing="false" onAction="#openSchedule" prefHeight="41.0" prefWidth="270.0" style="-fx-border-color: transparent; -fx-background-color: #D2D0A0; -fx-text-fill: #ffffff; -fx-font-family: Helvetica; -fx-font-size: 16px; -fx-font-weight: Bold; -fx-background-color: rgba(255, 255, 255, 0.6);" text="Schedule">
                      <graphic>
                         <FontAwesomeIconView glyphName="CALENDAR" />
                      </graphic></Button>
-                  <Button onAction="#openTask" mnemonicParsing="false" prefHeight="41.0" prefWidth="270.0" style="-fx-border-color: transparent; -fx-background-color: rgba(255, 255, 255, 0.6); -fx-text-fill: #ffffff; -fx-font-family: Helvetica; -fx-font-size: 16px; -fx-font-weight: Bold;" text="Tasks">
+                  <Button mnemonicParsing="false" onAction="#openTask" prefHeight="41.0" prefWidth="270.0" style="-fx-border-color: transparent; -fx-background-color: rgba(255, 255, 255, 0.6); -fx-text-fill: #ffffff; -fx-font-family: Helvetica; -fx-font-size: 16px; -fx-font-weight: Bold;" text="Tasks">
                      <graphic>
                         <FontAwesomeIconView glyphName="CHECK" />
                      </graphic></Button>
@@ -31,9 +31,6 @@
                      <graphic>
                         <FontAwesomeIconView glyphName="USER" />
                      </graphic></Button>
-                  <Button mnemonicParsing="false" prefHeight="41.0" prefWidth="270.0" style="-fx-border-color: transparent; -fx-background-color: rgba(255, 255, 255, 0.6); -fx-text-fill: #ffffff; -fx-font-family: Helvetica; -fx-font-size: 16px; -fx-font-weight: Bold;" text="Market" />
-                  <Button mnemonicParsing="false" prefHeight="41.0" prefWidth="270.0" style="-fx-border-color: transparent; -fx-background-color: rgba(255, 255, 255, 0.6); -fx-text-fill: #ffffff; -fx-font-family: Helvetica; -fx-font-size: 16px; -fx-font-weight: Bold;" text="Contacts" />
-                  <Button mnemonicParsing="false" prefHeight="41.0" prefWidth="270.0" style="-fx-border-color: transparent; -fx-background-color: rgba(255, 255, 255, 0.6); -fx-text-fill: #ffffff; -fx-font-family: Helvetica; -fx-font-size: 16px; -fx-font-weight: Bold;" text="Reports" />
                </children>
             </VBox>
             <VBox layoutX="3.0" layoutY="-6.0" prefHeight="142.0" prefWidth="267.0">
