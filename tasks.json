@@ -1,0 +1,36 @@
+[ {
+  "taskName" : "Water the plants",
+  "dueDate" : "2024-03-25",
+  "priority" : "High",
+  "status" : "Pending",
+  "assignee" : "John",
+  "done" : false
+}, {
+  "taskName" : "Harvest crops",
+  "dueDate" : "2024-03-28",
+  "priority" : "Medium",
+  "status" : "In Progress",
+  "assignee" : "Anna",
+  "done" : false
+}, {
+  "taskName" : "Fix irrigation",
+  "dueDate" : "2024-04-01",
+  "priority" : "Low",
+  "status" : "Not Started",
+  "assignee" : "Mike",
+  "done" : false
+}, {
+  "taskName" : "Buy Food for Fufu",
+  "dueDate" : "2025-05-27",
+  "priority" : "Medium",
+  "status" : "Not Started",
+  "assignee" : "Bereket",
+  "done" : false
+}, {
+  "taskName" : "I want some food ",
+  "dueDate" : "2025-05-27",
+  "priority" : "High",
+  "status" : "In Progress",
+  "assignee" : "Gina",
+  "done" : false
+} ]
