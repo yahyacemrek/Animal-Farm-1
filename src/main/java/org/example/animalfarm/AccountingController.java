@@ -2,20 +2,123 @@ package org.example.animalfarm;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.chart.LineChart;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import javafx.util.StringConverter;
 
 import java.io.IOException;
+import java.net.URL;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.ResourceBundle;
 
-public class AccountingController {
+public class AccountingController implements Initializable {
     @FXML
-    private TableView TableId;
+    private TableView<Account> TableId;
     
     @FXML
     private LineChart ChartId;
+
+    @FXML
+    private Button TransactionButton;
+
+    @FXML
+    private TableColumn<Account, String> dateColumn;
+
+    @FXML
+    private TableColumn<Account, String> descriptionColumn;
+
+    @FXML
+    private TableColumn<Account, Double> amountColumn;
+
+    @FXML
+    private TableColumn<Account, String> typeColumn;
+
+    private AccountManager accountManager;
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        accountManager = AccountManager.getInstance();
+        
+        // Initialize columns
+        dateColumn.setCellValueFactory(new PropertyValueFactory<>("date"));
+        descriptionColumn.setCellValueFactory(new PropertyValueFactory<>("description"));
+        amountColumn.setCellValueFactory(new PropertyValueFactory<>("amount"));
+        typeColumn.setCellValueFactory(new PropertyValueFactory<>("type"));
+
+        // Set table items
+        TableId.setItems(accountManager.getAccountList());
+
+        // Add transaction button handler
+        TransactionButton.setOnAction(event -> showAddTransactionDialog());
+    }
+
+    private void showAddTransactionDialog() {
+        // Create the custom dialog
+        Dialog<Account> dialog = new Dialog<>();
+        dialog.setTitle("Add Transaction");
+        dialog.setHeaderText("Enter transaction details");
+
+        // Set the button types
+        ButtonType addButtonType = new ButtonType("Add", ButtonBar.ButtonData.OK_DONE);
+        dialog.getDialogPane().getButtonTypes().addAll(addButtonType, ButtonType.CANCEL);
+
+        // Create the form fields
+        DatePicker datePicker = new DatePicker(LocalDate.now());
+        TextField descriptionField = new TextField();
+        TextField amountField = new TextField();
+        ComboBox<String> typeComboBox = new ComboBox<>();
+        typeComboBox.getItems().addAll("Income", "Expense");
+        typeComboBox.setValue("Income");
+
+        // Create and populate the grid
+        javafx.scene.layout.GridPane grid = new javafx.scene.layout.GridPane();
+        grid.setHgap(10);
+        grid.setVgap(10);
+        grid.setPadding(new javafx.geometry.Insets(20, 150, 10, 10));
+
+        grid.add(new Label("Date:"), 0, 0);
+        grid.add(datePicker, 1, 0);
+        grid.add(new Label("Description:"), 0, 1);
+        grid.add(descriptionField, 1, 1);
+        grid.add(new Label("Amount:"), 0, 2);
+        grid.add(amountField, 1, 2);
+        grid.add(new Label("Type:"), 0, 3);
+        grid.add(typeComboBox, 1, 3);
+
+        dialog.getDialogPane().setContent(grid);
+
+        // Convert the result to Account object when the add button is clicked
+        dialog.setResultConverter(dialogButton -> {
+            if (dialogButton == addButtonType) {
+                try {
+                    String date = datePicker.getValue().format(DateTimeFormatter.ISO_LOCAL_DATE);
+                    String description = descriptionField.getText();
+                    double amount = Double.parseDouble(amountField.getText());
+                    String type = typeComboBox.getValue();
+
+                    Account account = new Account(date, description, amount, type);
+                    accountManager.addAccount(account);
+                    return account;
+                } catch (NumberFormatException e) {
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Error");
+                    alert.setHeaderText("Invalid Input");
+                    alert.setContentText("Please enter a valid number for amount.");
+                    alert.showAndWait();
+                    return null;
+                }
+            }
+            return null;
+        });
+
+        dialog.showAndWait();
+    }
 
     @FXML
     private void openSchedule() {
@@ -31,8 +134,6 @@ public class AccountingController {
         }
     }
 
-
-
     @FXML
     private void openTask() {
         try {
@@ -46,6 +147,7 @@ public class AccountingController {
             e.printStackTrace();
         }
     }
+
     @FXML
     private void openLivestockPage() {
         try {
@@ -54,7 +156,6 @@ public class AccountingController {
 
             // Get current stage
             Stage stage = (Stage) TableId.getScene().getWindow();
-            // FadeTransition fadeIn = new FadeTransition(Duration.millis(500), livestockRoot);
             stage.setScene(new Scene(livestockRoot));
             stage.setTitle("Livestock");
             stage.show();

@@ -57,17 +57,17 @@ public class AddAnimalController {
             }
 
             // Get all the text values
-            String name = nameField.getText();
-            String age = ageField.getText();
-            String sex = sexField.getText();
-            String type = typeField.getText();
-            String breed = breedField.getText();
-            String color = colorField.getText();
-            String birthday = birthdayField.getText();
-            String lastchecked = lastweightField.getText();
-            String location = locationField.getText();
-            String tag = tagField.getText();
-            String status = statusField.getText();
+        String name = nameField.getText();
+        String age = ageField.getText();
+        String sex = sexField.getText();
+        String type = typeField.getText();
+        String breed = breedField.getText();
+        String color = colorField.getText();
+        String birthday = birthdayField.getText();
+        String lastchecked = lastweightField.getText();
+        String location = locationField.getText();
+        String tag = tagField.getText();
+        String status = statusField.getText();
             
             // Parse numeric values with error handling
             Double lastweight = 0.0;
@@ -80,10 +80,10 @@ public class AddAnimalController {
                 return;
             }
 
-            String maternity = maternityField.getText();
-            String paternity = paternityField.getText();
-            String offspring = offspringField.getText();
-            String lastmeasured = "15-5-2025";
+        String maternity = maternityField.getText();
+        String paternity = paternityField.getText();
+        String offspring = offspringField.getText();
+        String lastmeasured = "15-5-2025";
 
             // Create and add the new animal using HashMap
             Animal newAnimal = new Animal(name, id, sex, age, lastweight, status, breed, type, tag, location, color, height, lastmeasured, birthday, paternity, maternity, offspring);
