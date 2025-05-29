@@ -10,7 +10,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AccountManager {
+public class    AccountManager {
     private static AccountManager instance;
     private final ObservableList<Account> accountList;
     private final String JSON_FILE_PATH = "accounts.json";
